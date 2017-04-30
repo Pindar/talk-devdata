@@ -1,10 +1,22 @@
+ const winston = require('winston');
+ const logger = new winston.Logger({
+  transports: [
+    new winston.transports.Console({
+      handleExceptions: true,
+      json: true
+    })
+  ],
+  exitOnError: false
+});
 
+var timer;
 
-function handleGET (req, res) {
+function handleGET (req, res) {  
   setTimeout(function () {
+    timer.done("handleGET done");
     res.header("Access-Control-Allow-Origin", "https://www.itnotes.de");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.json({ message: 'hooray! welcome to our api!' });
+    res.json({ message: 'hooray! welcome to our api!' });    
   }, Math.random() * 3000);
 }
 
@@ -23,6 +35,7 @@ function handlePUT (req, res) {
  * @param {Object} res Cloud Function response context.
  */
 exports.testApi1 = function helloHttp (req, res) {
+  timer = winston.startTimer()
   switch (req.method) {
     case 'GET':
       handleGET(req, res);
