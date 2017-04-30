@@ -2,7 +2,7 @@
 
 function handleGET (req, res) {
   setTimeout(function () {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://www.itnotes.de");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json({ message: 'hooray! welcome to our api!' });
   }, Math.random() * 3000);
