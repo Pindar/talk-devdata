@@ -2,7 +2,9 @@
 
 function handleGET (req, res) {
   setTimeout(function () {
-      res.json({ message: 'hooray! welcome to our api!' });
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.json({ message: 'hooray! welcome to our api!' });
   }, Math.random() * 3000);
 }
 
