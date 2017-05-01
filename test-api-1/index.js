@@ -35,6 +35,8 @@ function handlePUT (req, res) {
  * @param {Object} res Cloud Function response context.
  */
 exports.testApi1 = function helloHttp (req, res) {
+  winston.error('warp nacelles offline');
+  winston.verbose('sheilds at 99%');
   winston.info('Hello again this is from winston');
   hrstart = process.hrtime();
   winston.profile('test');
