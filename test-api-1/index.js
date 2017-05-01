@@ -34,6 +34,7 @@ function handlePUT (req, res) {
  * @param {Object} res Cloud Function response context.
  */
 exports.testApi1 = function helloHttp (req, res) {
+  console.log('this is just a test');
   logger.info('testApi start');
   winston.profile('test');
   switch (req.method) {
