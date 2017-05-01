@@ -4,7 +4,6 @@ function handleGET (req, res) {
   
   setTimeout(function () {
     var hrend = process.hrtime(hrstart);
-    console.info({json});
     console.info({foo: "bar"});
     console.info({
       "executionTimeSec": hrend[0], 
