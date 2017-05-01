@@ -1,15 +1,10 @@
-var winston = require('winston');
-var transport = require('@google-cloud/logging-winston');
-winston.add(transport);
-
 var hrstart;
 
 function handleGET (req, res) {  
-  winston.info('handleGET start');
+  
   setTimeout(function () {
-    winston.profile('test');
     var hrend = process.hrtime(hrstart);
-    winston.info({
+    console.log({
       "executionTimeSec": hrend[0], 
       "executionTimeMs": hrend[1]/1000000
     });
@@ -35,12 +30,8 @@ function handlePUT (req, res) {
  * @param {Object} res Cloud Function response context.
  */
 exports.testApi1 = function helloHttp (req, res) {
-  winston.error('warp nacelles offline');
-  winston.verbose('sheilds at 99%');
-  winston.info('Hello again this is from winston');
-  winston.log('info', 'test');
+  
   hrstart = process.hrtime();
-  winston.profile('test');
   switch (req.method) {
     case 'GET':
       handleGET(req, res);
