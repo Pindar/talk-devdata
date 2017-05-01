@@ -5,11 +5,19 @@
     ]
   });
 
+var hrstart;
+
 function handleGET (req, res) {  
   logger.info('handleGET start');
   setTimeout(function () {
     winston.profile('test');
-    
+    var hrend = process.hrtime(hrstart);
+    console.info("Execution time (hr): %ds %dms", hrend[0], hrend[1]/1000000);
+    console.info(JSON.stringify({
+      "executionTimeSec": hrend[0], 
+      "executionTimeMs": hrend[1]/1000000
+    }));
+
     res.header("Access-Control-Allow-Origin", "https://www.itnotes.de");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json({ message: 'hooray! welcome to our api!' });    
@@ -35,6 +43,7 @@ exports.testApi1 = function helloHttp (req, res) {
   winston.info('Hello again this is from winston');
   process.stdout.write('process stdout');
   logger.info('testApi start');
+  hrstart = process.hrtime();
   winston.profile('test');
   switch (req.method) {
     case 'GET':
