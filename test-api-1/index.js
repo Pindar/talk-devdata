@@ -13,10 +13,10 @@ function handleGET (req, res) {
     winston.profile('test');
     var hrend = process.hrtime(hrstart);
     console.info("Execution time (hr): %ds %dms", hrend[0], hrend[1]/1000000);
-    console.info(JSON.stringify({
+    console.info({
       "executionTimeSec": hrend[0], 
       "executionTimeMs": hrend[1]/1000000
-    }));
+    });
 
     res.header("Access-Control-Allow-Origin", "https://www.itnotes.de");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
