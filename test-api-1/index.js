@@ -1,19 +1,15 @@
- const winston = require('winston');
- const logger = new (winston.Logger)({
-    transports: [
-      new (winston.transports.Console)()
-    ]
-  });
+var winston = require('winston');
+var transport = require('@google-cloud/logging-winston');
+winston.add(transport);
 
 var hrstart;
 
 function handleGET (req, res) {  
-  logger.info('handleGET start');
+  winston.info('handleGET start');
   setTimeout(function () {
     winston.profile('test');
     var hrend = process.hrtime(hrstart);
-    console.info("Execution time (hr): %ds %dms", hrend[0], hrend[1]/1000000);
-    console.info({
+    winston.info({
       "executionTimeSec": hrend[0], 
       "executionTimeMs": hrend[1]/1000000
     });
@@ -39,10 +35,7 @@ function handlePUT (req, res) {
  * @param {Object} res Cloud Function response context.
  */
 exports.testApi1 = function helloHttp (req, res) {
-  console.log('this is just a test');
   winston.info('Hello again this is from winston');
-  process.stdout.write('process stdout');
-  logger.info('testApi start');
   hrstart = process.hrtime();
   winston.profile('test');
   switch (req.method) {
