@@ -32,6 +32,7 @@ function handlePUT (req, res) {
  */
 exports.testApi1 = function helloHttp (req, res) {
   console.log('this is just a test');
+  winston.info('Hello again this is from winston');
   logger.info('testApi start');
   winston.profile('test');
   switch (req.method) {
