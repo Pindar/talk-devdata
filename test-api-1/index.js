@@ -38,6 +38,7 @@ exports.testApi1 = function helloHttp (req, res) {
   winston.error('warp nacelles offline');
   winston.verbose('sheilds at 99%');
   winston.info('Hello again this is from winston');
+  winston.log('info', 'test');
   hrstart = process.hrtime();
   winston.profile('test');
   switch (req.method) {
